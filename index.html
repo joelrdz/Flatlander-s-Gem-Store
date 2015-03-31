@@ -7,16 +7,14 @@
 	<!-- stylesheets -->
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
-<body ng-controller="StoreController as store">
-	<div class="container well">
-		<div class="product row" ng-hide="store.product.soldOut">
-			<h3>
-				{{store.product.name}}
-				<em class="pull-right">{{store.product.price}}</em>
-			</h3>
-			<button ng-show="store.product.canPurchase">Add to Cart</button>
-		</div>
+<body class="container" ng-controller="StoreController as store">
+	<div class="product row" ng-repeat="product in store.products">
+		<h3>
+			{{product.name}}
+			<em class="pull-right">{{product.price}}</em>
+		</h3>
 	</div>
+	
 	<!-- Javascript files -->
 	<script type="text/javascript" src="js/angular.min.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
