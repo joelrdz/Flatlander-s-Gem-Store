@@ -12,7 +12,10 @@
 <body class="container" ng-controller="StoreController as store">
 	<!--  Products Container  -->
 	<div class="list-group">
-
+		<header>
+			<h1 class="text-center">Flatlander Crafted Gems</h1>
+			<h2 class="text-center">– an Angular store –</h2>
+		</header>
 		<!--  Product Container  -->
 		<div class="list-group-item" ng-repeat="product in store.products">
 			<h3>
@@ -21,19 +24,48 @@
 			</h3>
 
 			<!-- Image Gallery -->
-			<div class="gallery" ng-show="product.images.length">
+			<section class="gallery" ng-controller="GalleryController as gallery" ng-show="product.images.length">
 				<div class="img-wrap">
-					<img ng-src="{{product.images[0]}}" />
+					<img ng-src="{{product.images[gallery.current]}}" />
 				</div>
+				{{gallery.current}}
 				<ul class="img-thumbnails clearfix">
 					<li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
 						<img ng-src="{{image}}" />
 					</li>
 				</ul>
-			</div>
+			</section>
 
+			<!-- Tabs/Panel Section -->
+			<section class="tab" ng-controller="TabController as tab">
+				<!-- Tabs -->
+				<ul class="nav nav-pills">
+					<li ng-class="{ active: tab.isSet(1) }">
+						<a href ng-click="tab.setTab(1)">Description</a>
+					</li>
+					<li ng-class="{ active: tab.isSet(2) }">
+						<a href ng-click="tab.setTab(2)">Specs</a>
+					</li>
+					<li ng-class="{ active: tab.isSet(3) }">
+						<a href ng-click="tab.setTab(3)">Reviews</a>
+					</li>
+				</ul>
+
+				<!-- Panels -->
+				<div ng-show="tab.isSet(1)">
+					<h4>Description</h4>
+					<blockquote>{{product.description}}</blockquote>
+				</div>
+				<div ng-show="tab.isSet(2)">
+					<h4>Specs</h4>
+					<blockquote>Shine: {{product.shine}}</blockquote>
+				</div>
+				<div ng-show="tab.isSet(3)">
+					<h4>Reviews</h4>
+					<blockquote></blockquote>
+				</div>
+			</section>
 		</div>
-
 	</div>
 	
 	<!-- Javascript files -->

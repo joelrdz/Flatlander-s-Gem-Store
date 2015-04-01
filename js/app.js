@@ -1,8 +1,31 @@
-(function() {
+(function () {
 	var app = angular.module('gemStore', []);
 
 	app.controller('StoreController', function(){
 		this.products = gems;
+	});
+
+	app.controller('TabController', function(){
+		this.tab = 1;
+
+		this.setTab = function(newValue){
+			this.tab = newValue;
+		};
+
+		this.isSet = function(tabName){
+			return this.tab === tabName;
+		};
+	});
+
+	app.controller('GalleryController', function(){
+		this.current = 0;
+		this.setCurrent = function(value){
+			if(value === null){
+				this.current = 0;
+			} else{
+				this.current = value;
+			}
+		};
 	});
 
 	var gems = [{
@@ -29,7 +52,7 @@
 			author: "tim@example.org",
 			createdOn: 1397490980837
 		}]
-	}, {
+		}, {
 		name: 'Bloodstone',
 		description: "Origin of the Bloodstone is unknown, hence its low value. It has a very high shine and 12 sides, however.",
 		shine: 9,
@@ -53,7 +76,7 @@
 			author: "gemsRock@example.org",
 			createdOn: 1397490980837
 		}]
-	}, {
+		}, {
 		name: 'Zircon',
 		description: "Zircon is our most coveted and sought after gem. You will pay much to be the proud owner of this gorgeous and high shine gem.",
 		shine: 70,
@@ -64,7 +87,7 @@
 		images: [
 			"img/gem-06.gif",
 			"img/gem-07.gif",
-			"img/gem-10.gif"
+			"img/gem-08.gif"
 		],
 		reviews: [{
 			stars: 1,
